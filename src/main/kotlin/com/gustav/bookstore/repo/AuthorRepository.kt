@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Repository
 interface AuthorRepository : MongoRepository<Author , Long> {
-    fun findAuthorById(authorId : Long) : Author?
+
 }

@@ -3,7 +3,7 @@ package com.gustav.bookstore.domain
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document(collation = "book")
+@Document(collection = "book")
 data class Book (
     @Id
     val isbn: String,

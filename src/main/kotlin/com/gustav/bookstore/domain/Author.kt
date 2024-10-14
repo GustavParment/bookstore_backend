@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.MongoId
 
-@Document(collation = "author")
+@Document(collection = "author")
 data class Author(
     @Id
     val id: Long?,

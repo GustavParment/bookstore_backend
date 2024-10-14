@@ -1,15 +1,30 @@
 package com.gustav.bookstore.controller
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.gustav.bookstore.domain.Author
+import com.gustav.bookstore.repo.AuthorRepository
+import com.gustav.bookstore.service.AuthorService
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping
-class TestController {
+class TestController(val authorService: AuthorService) {
 
-    @GetMapping("/test")
-    fun test(): String {
-        return "Hello World"
+
+    @PostMapping("/test-post")
+    fun testSaveAuthor(): Author {
+        val testAuthor = Author(
+            5,
+            "Test Author",
+            25,
+            "ett test",
+            "test.jpg")
+
+        return authorService.addAuthor(testAuthor)
     }
+    @GetMapping("/test-get")
+    fun testGetAuthor(): List<Author> {
+        return authorService.findAll()
+    }
+
+
 }
