@@ -17,9 +17,17 @@ class BookController(
     fun getAllBooks(): MutableList<Book> = bookRepository.findAll()
 
     @PostMapping("/post-new")
-    fun createBook(@RequestBody book: Book): ResponseEntity<Book>{
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(bookRepository.save(book))
+    fun createBook(@RequestBody book: Book): ResponseEntity<Any>{
+        return try {
+            val savedBook = bookRepository.save(book)
+
+            ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(bookRepository.save(savedBook))
+        }catch (e: Exception){
+            ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error: Unable to save the book. ${e.message}")
+        }
     }
 }
