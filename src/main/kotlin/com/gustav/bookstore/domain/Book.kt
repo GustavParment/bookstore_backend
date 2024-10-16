@@ -10,6 +10,6 @@ data class Book (
     val title: String,
     val description: String,
     val image: String,
-    val author: Author
+    val author: Author?
 
 )
