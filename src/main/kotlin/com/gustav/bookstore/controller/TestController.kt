@@ -19,7 +19,7 @@ class TestController(val authorService: AuthorService) {
             "ett test",
             "test.jpg")
 
-        return authorService.addAuthor(testAuthor)
+        return  authorService.addAuthor(testAuthor)
     }
     @GetMapping("/test-get")
     fun testGetAuthor(): List<Author> {

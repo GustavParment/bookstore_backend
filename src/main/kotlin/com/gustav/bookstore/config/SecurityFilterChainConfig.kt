@@ -11,17 +11,19 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 @EnableWebSecurity
 class SecurityFilterChainConfig {
-
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
+            .csrf {
+                csrf -> csrf.disable()
+            }
             .authorizeHttpRequests {
-                authorizeRequest -> authorizeRequest
-                .requestMatchers("/*")
-                .permitAll()
-
+                it
+                    .requestMatchers("/book/*")
+                    .permitAll()
             }
         return http.build()
     }
+
 
     }
