@@ -1,15 +1,15 @@
-package com.gustav.bookstore.domain
+package com.gustav.bookstore.domain.entity
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "book")
-data class Book (
+data class BookEntity (
     @Id
     val isbn: String?,
     val title: String?,
     val description: String,
     val image: String,
-    val author: Author?
+    val authorEntity: AuthorEntity?
 
 )

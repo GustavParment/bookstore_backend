@@ -1,25 +1,24 @@
 package com.gustav.bookstore.controller
 
-import com.gustav.bookstore.domain.Author
-import com.gustav.bookstore.domain.Book
+import com.gustav.bookstore.domain.entity.BookEntity
 import com.gustav.bookstore.repo.BookRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/api/book")
 class BookController(
     private val bookRepository: BookRepository
 )
 {
     @GetMapping("/find-all")
-    fun getAllBooks(): MutableList<Book> = bookRepository.findAll()
+    fun getAllBooks(): MutableList<BookEntity> = bookRepository.findAll()
 
     @PostMapping("/post-new")
-    fun createBook(@RequestBody book: Book): ResponseEntity<Any>{
+    fun createBook(@RequestBody bookEntity: BookEntity): ResponseEntity<Any>{
         return try {
-            val savedBook = bookRepository.save(book)
+            val savedBook = bookRepository.save(bookEntity)
 
             ResponseEntity
                 .status(HttpStatus.CREATED)

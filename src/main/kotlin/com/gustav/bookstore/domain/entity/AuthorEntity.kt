@@ -1,14 +1,14 @@
-package com.gustav.bookstore.domain
+package com.gustav.bookstore.domain.entity
 
 
+import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.MongoId
 
 @Document(collection = "author")
-data class Author(
+data class AuthorEntity(
     @Id
-    val id: Long?,
+    val id: ObjectId? = ObjectId(),
     val name: String,
     val age: Int,
     val description: String,

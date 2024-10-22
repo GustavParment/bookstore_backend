@@ -1,6 +1,5 @@
 package com.gustav.bookstore
 
-import com.gustav.bookstore.domain.Author
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 

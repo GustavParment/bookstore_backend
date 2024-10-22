@@ -1,24 +1,30 @@
 package com.gustav.bookstore.controller
 
-import com.gustav.bookstore.domain.Author
+import com.gustav.bookstore.domain.dto.AuthorDTO
+import com.gustav.bookstore.domain.entity.AuthorEntity
 import com.gustav.bookstore.service.AuthorService
-import com.gustav.bookstore.service.BookService
+import com.gustav.bookstore.toAuthorDTO
+import com.gustav.bookstore.toAuthorEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping
+@RequestMapping("/v1/authors")
 class AuthorController(
     val authorService: AuthorService,
     )
 {
-    @PostMapping("/authors")
-    fun createAuthor(@RequestBody author: Author){
-        authorService.addAuthor(author)
+    @PostMapping("/create")
+    fun createAuthor(@RequestBody authorDTO: AuthorDTO): AuthorDTO{
+       return authorService
+           .save(
+               authorDTO.toAuthorEntity()
+           )
+           .toAuthorDTO()
     }
 
-    @GetMapping("/authors/{authorId}")
-    fun getAuthorById(@PathVariable authorId: Long): Author {
-        return authorService.findById(authorId);
-    }
+//    @GetMapping("/authors/{authorId}")
+//    fun getAuthorById(@PathVariable authorId: Long): AuthorEntity {
+//        return authorService.findById(authorId);
+//    }
 
 }
