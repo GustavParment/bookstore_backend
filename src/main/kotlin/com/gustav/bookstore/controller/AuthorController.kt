@@ -5,6 +5,7 @@ import com.gustav.bookstore.domain.entity.AuthorEntity
 import com.gustav.bookstore.service.AuthorService
 import com.gustav.bookstore.toAuthorDTO
 import com.gustav.bookstore.toAuthorEntity
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,12 +15,16 @@ class AuthorController(
     )
 {
     @PostMapping("/create")
-    fun createAuthor(@RequestBody authorDTO: AuthorDTO): AuthorDTO{
-       return authorService
+    fun createAuthor(@RequestBody authorDTO: AuthorDTO):
+            ResponseEntity<AuthorDTO>{
+       return ResponseEntity
+           .status(201)
+           .body(authorService
            .save(
                authorDTO.toAuthorEntity()
            )
            .toAuthorDTO()
+       )
     }
 
 //    @GetMapping("/authors/{authorId}")
