@@ -6,7 +6,10 @@ import com.gustav.bookstore.service.AuthorService
 import org.springframework.stereotype.Service
 
 @Service
-class AuthorServiceImpl(val authorRepository: AuthorRepository): AuthorService {
+class AuthorServiceImpl(
+    private val authorRepository: AuthorRepository
+)
+    : AuthorService {
     override fun save(author: AuthorEntity): AuthorEntity {
         return authorRepository.save(author)
     }

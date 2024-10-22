@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/v1/authors")
 class AuthorController(
-    val authorService: AuthorService,
+    private val authorService: AuthorService
     )
 {
     @PostMapping("/create")
