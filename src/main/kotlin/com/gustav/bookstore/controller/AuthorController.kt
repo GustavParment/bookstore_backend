@@ -5,6 +5,7 @@ import com.gustav.bookstore.domain.entity.AuthorEntity
 import com.gustav.bookstore.service.AuthorService
 import com.gustav.bookstore.toAuthorDTO
 import com.gustav.bookstore.toAuthorEntity
+import org.bson.types.ObjectId
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -27,9 +28,11 @@ class AuthorController(
        )
     }
 
-//    @GetMapping("/authors/{authorId}")
-//    fun getAuthorById(@PathVariable authorId: Long): AuthorEntity {
-//        return authorService.findById(authorId);
-//    }
+    @GetMapping("/{id}")
+    fun getAuthorById(@PathVariable("id") authorId: ObjectId): ResponseEntity<AuthorEntity> {
+        return ResponseEntity
+            .status(200)
+            .body(authorService.getById(authorId))
+    }
 
 }
